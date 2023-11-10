@@ -1,5 +1,7 @@
 package com.xjgv.poointerfaces.modelo;
 
+import java.util.Objects;
+
 public class Cliente {
     private Integer id;
     private String nombre;
@@ -48,4 +50,15 @@ public class Cliente {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cliente cliente = (Cliente) o;
+
+        return this.id!= null && this.id.equals(cliente.id);
+    }
+
 }
