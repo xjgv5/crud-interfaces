@@ -3,6 +3,7 @@ package com.xjgv.poointerfaces.repositorio;
 import com.xjgv.poointerfaces.modelo.Cliente;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ClienteListRepositorio implements CrudRepositorio,
@@ -53,11 +54,43 @@ public class ClienteListRepositorio implements CrudRepositorio,
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
-        return null;
+        dataSource.sort(( a,  b) -> {
+                int resultado = 0;
+                if (dir == Direccion.ASC){
+                    switch (campo) {
+                        case "id" ->{
+                            resultado = a.getId().compareTo(b.getId());
+                        }
+                        case "nombre" ->{
+                            resultado = a.getNombre().compareTo(b.getNombre());
+                        }
+                        case "apellido" ->{
+                            resultado = a.getApellido().compareTo(b.getApellido());
+                        }
+                    }
+                    
+                } else if (dir == Direccion.DESC) {
+                    switch (campo) {
+                        case "id" ->{
+                            resultado = b.getId().compareTo(a.getId());
+                        }
+                        case "nombre" ->{
+                            resultado = b.getNombre().compareTo(a.getNombre());
+                        }
+                        case "apellido" ->{
+                            resultado = b.getApellido().compareTo(a.getApellido());
+                        }
+                    }
+                }
+                return resultado;
+            }
+        );
+
+        return dataSource;
     }
 
     @Override
     public List<Cliente> listar(int desde, int hasta) {
-        return null;
+        return dataSource.subList(desde, hasta);
     }
 }
