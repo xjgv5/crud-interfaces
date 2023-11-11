@@ -46,9 +46,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido;
+        return "ID: "+ id + "\tNombre : " + nombre + "\t Apellido: " + apellido;
     }
 
     @Override
