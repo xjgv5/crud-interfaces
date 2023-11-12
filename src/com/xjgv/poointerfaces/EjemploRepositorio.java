@@ -35,5 +35,11 @@ public class EjemploRepositorio {
         repo.editarCliente(actualizado);
         Cliente bea = repo.porId(2);
         System.out.println(bea);
+
+        System.out.println();
+        List<Cliente> clientesOrdenAsc2 = ((OrdenableRepositorio)repo)
+                .listar("nombre", Direccion.ASC);
+        clientesOrdenAsc2.forEach(System.out::println);
+
     }
 }
